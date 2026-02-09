@@ -172,6 +172,43 @@ section p {
     margin-top: 12px;
 }
 
+/* SCROLL REVEAL */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 0.9s cubic-bezier(.19,1,.22,1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* PROJECT CARD UPGRADE */
+.project-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+/* BUTTON MICRO INTERACTION */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,.25);
+    transform: translateX(-100%);
+    transition: .4s;
+}
+
+.btn:hover::before {
+    transform: translateX(0);
+}
+
 /* PROJECT LIST */
 .project-list {
     max-width: 1200px;
@@ -204,6 +241,41 @@ section p {
     margin-bottom: 26px;
     color: #cbd5f5;
 }
+
+/* PROJECT DRAG SCROLL */
+.project-wrapper {
+    overflow: hidden;
+}
+
+.drag-scroll {
+    display: flex;
+    gap: 32px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 20px;
+    cursor: grab;
+}
+
+.drag-scroll:active {
+    cursor: grabbing;
+}
+
+/* hide scrollbar */
+.drag-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.project-card {
+    min-width: 320px;
+    flex-shrink: 0;
+}
+
+/* Prevent text selection while dragging */
+.drag-scroll,
+.drag-scroll * {
+    user-select: none;
+}
+
 
 /* CONTACT */
 .contact p {

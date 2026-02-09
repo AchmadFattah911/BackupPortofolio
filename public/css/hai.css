@@ -15,87 +15,104 @@ body {
 }
 
 /* =========================
-   LOOPING ANIMATION BASE
+   ANIMATION
 ========================= */
 @keyframes float {
-    0%   { transform: translateY(0); }
-    50%  { transform: translateY(-6px); }
-    100% { transform: translateY(0); }
-}
-
-@keyframes fadeSlide {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
 }
 
 /* =========================
-   NAVBAR
+   NAVBAR (STYLE ASLI – AMAN)
 ========================= */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 18px 70px;
+    height: 72px; /* ⬅️ FIX biar gak nabrak hero */
+    padding: 16px 64px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(2,6,23,0.6);
-    backdrop-filter: blur(14px);
+    background: rgba(2,6,23,.65);
+    backdrop-filter: blur(12px);
     z-index: 100;
-    animation: fadeSlide 1.5s ease forwards;
-}
-
-.logo {
-    font-weight: 600;
-    animation: float 4s ease-in-out infinite;
-}
-
-.navbar ul {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-}
-
-.navbar a {
-    color: #cbd5f5;
-    text-decoration: none;
-    font-size: 0.85rem;
-    position: relative;
-    transition: color .3s;
-}
-
-.navbar a:hover {
-    color: #22d3ee;
 }
 
 /* =========================
-   HERO
+   NAVBAR CONTENT (RAPI & MODERN)
 ========================= */
-.hero {
-    min-height: 100vh;
-    padding: 160px 80px 100px;
-    display: flex;x`
+
+/* Brand / Logo kiri */
+.navbar .logo,
+.navbar .brand,
+.navbar h1,
+.navbar span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: .5px;
+    color: #e5e7eb;
+}
+
+/* Wrapper menu kanan */
+.navbar ul {
+    list-style: none;          /* ❌ bulet ilang */
+    display: flex;
+    gap: 32px;                 /* ✅ jarak rapi */
     align-items: center;
 }
 
+/* Link menu */
+.navbar ul li a {
+    position: relative;
+    text-decoration: none;
+    font-size: .95rem;
+    font-weight: 500;
+    color: #cbd5f5;
+    transition: color .3s ease;
+}
+
+/* Hover warna */
+.navbar ul li a:hover {
+    color: #22d3ee;
+}
+
+/* Garis bawah animasi */
+.navbar ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(135deg,#7c3aed,#22d3ee);
+    transition: width .3s ease;
+    border-radius: 999px;
+}
+
+.navbar ul li a:hover::after {
+    width: 100%;
+}
+
+
+/* =========================
+   HERO (DIRAPIIN)
+========================= */
+.hero {
+    min-height: calc(100vh - 72px);
+    padding: 140px 80px 80px; /* ⬅️ lebih padat */
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 64px;
+}
+
 .hero-text {
-    max-width: 900px;
-    animation: fadeSlide 1.6s ease forwards;
+    max-width: 620px;
 }
 
 .hero-text h1 {
-    font-size: 3.4rem;
-    margin-bottom: 24px;
-    animation: float 5s ease-in-out infinite;
+    font-size: 3.2rem;
 }
 
 .hero-text span {
@@ -103,193 +120,176 @@ body {
 }
 
 .hero-text p {
-    max-width: 720px;
-    line-height: 1.9;
+    margin-top: 18px;
+    line-height: 1.75;
     color: #cbd5f5;
-    font-size: 1.05rem;
-    animation: float 6s ease-in-out infinite;
 }
 
 .btn {
     display: inline-block;
-    margin-top: 36px;
-    padding: 14px 36px;
-    border-radius: 40px;
-    background: linear-gradient(135deg, #7c3aed, #22d3ee);
+    margin-top: 30px;
+    padding: 14px 38px;
+    border-radius: 999px;
+    background: linear-gradient(135deg,#7c3aed,#22d3ee);
     color: #020617;
     font-weight: 600;
     text-decoration: none;
-    animation: float 4s ease-in-out infinite;
-}
-/* =========================
-   HERO VISUAL (FOTO)
-========================= */
-.hero {
-    justify-content: space-between;
-    gap: 80px;
 }
 
+/* =========================
+   HERO IMAGE (FIX LONJONG)
+========================= */
 .hero-visual {
-    flex: 0 0 320px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    animation: fadeSlide 1.8s ease forwards;
 }
 
 .hero-visual img {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 50%;
-
-    border: 2px solid rgba(124,58,237,0.45);
-    box-shadow:
-        0 0 0 8px rgba(124,58,237,0.08),
-        0 25px 60px rgba(0,0,0,0.6);
-
+    width: 100%;
+    max-width: 360px;          /* ⬅️ NGIKUT TEKS KIRI */
+    height: auto;              /* ⬅️ PENTING */
+    aspect-ratio: auto;        /* ⬅️ MATIIN PAKSAAN */
+    object-fit: contain;       /* ⬅️ GAK KETARIK */
+    border-radius: 22px;
+    border: 1px solid rgba(124,58,237,.4);
+    box-shadow: 0 35px 80px rgba(0,0,0,.6);
     animation: float 6s ease-in-out infinite;
 }
 
 /* =========================
-   HERO VISUAL (FOTO KOTAK)
+   SECTION GLOBAL (LAYER FEEL)
 ========================= */
-.hero {
-    justify-content: space-between;
-    gap: 80px;
+section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 140px 80px; /* ⬅️ lebih rapih antar layer */
 }
 
-.hero-visual {
-    flex: 0 0 340px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeSlide 1.8s ease forwards;
+section h2 {
+    font-size: 1.9rem;
+    margin-bottom: 26px;
+    text-align: center;
 }
 
-.hero-visual img {
-    width: 320px;
-    height: 420px;
-    object-fit: cover;
-
-    border-radius: 18px; /* KOTAK MODERN */
-    border: 1px solid rgba(124,58,237,0.45);
-
-    background: linear-gradient(
-        180deg,
-        rgba(15,23,42,0.9),
-        rgba(2,6,23,0.9)
-    );
-
-    box-shadow:
-        0 0 0 6px rgba(124,58,237,0.08),
-        0 30px 70px rgba(0,0,0,0.65);
-
-    animation: float 6s ease-in-out infinite;
-    transition: transform .4s ease, box-shadow .4s ease;
-}
-
-.hero-visual img:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow:
-        0 0 0 10px rgba(124,58,237,0.12),
-        0 40px 90px rgba(124,58,237,0.25);
+section h2::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 4px;
+    margin: 18px auto 0;
+    background: linear-gradient(135deg,#7c3aed,#22d3ee);
+    border-radius: 999px;
 }
 
 /* =========================
-   HERO VISUAL (PERSEGI PANJANG ELEGAN)
+   FULL SECTION
 ========================= */
-.hero {
-    justify-content: space-between;
-    gap: 80px;
+.full-section {
+    min-height: auto;          /* ⬅️ JANGAN PAKSA 100vh */
+    text-align: center;
 }
 
-.hero-visual {
-    flex: 0 0 380px;
+/* =========================
+   SKILLS
+========================= */
+.skills ul {
     display: flex;
     justify-content: center;
-    align-items: center;
-    animation: fadeSlide 1.8s ease forwards;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 36px;
+    list-style: none;
 }
 
-.hero-visual img {
-    width: 360px;
-    height: 440px; /* TIDAK TERLALU PANJANG */
-    object-fit: cover;
+.skills li {
+    padding: 14px 30px;
+    border-radius: 999px;
+    background: rgba(124,58,237,.12);
+    border: 1px solid rgba(124,58,237,.4);
+    animation: float 5s ease-in-out infinite;
+}
 
+/* =========================
+   PROJECT
+========================= */
+.project {
+    max-width: 1200px;
+    padding: 160px 80px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 40px;
+}
+
+.project .card {
+    background: rgba(15,23,42,.9);
     border-radius: 20px;
-    border: 1px solid rgba(124,58,237,0.45);
-
-    background: linear-gradient(
-        180deg,
-        rgba(15,23,42,0.9),
-        rgba(2,6,23,0.9)
-    );
-
-    box-shadow:
-        0 0 0 6px rgba(124,58,237,0.08),
-        0 35px 80px rgba(0,0,0,0.65);
-
-    animation: float 6s ease-in-out infinite;
-    transition: 
-        transform .5s ease,
-        box-shadow .5s ease;
+    padding: 32px;
+    border: 1px solid rgba(124,58,237,.3);
+    transition: .4s cubic-bezier(.19,1,.22,1);
 }
 
-/* HOVER = LEBIH HIDUP */
-.hero-visual img:hover {
-    transform: translateY(-12px) scale(1.015);
-    box-shadow:
-        0 0 0 10px rgba(124,58,237,0.15),
-        0 45px 100px rgba(124,58,237,0.35);
+.project .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 70px rgba(124,58,237,.35);
 }
 
 /* =========================
-   HERO VISUAL (PERSEGI PANJANG ELEGAN)
+   CONTACT
 ========================= */
-.hero {
-    justify-content: space-between;
-    gap: 80px;
+.contact {
+    text-align: center;
 }
 
-.hero-visual {
-    flex: 0 0 380px;
+.contact-form {
+    max-width: 520px;
+    margin: 40px auto 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeSlide 1.8s ease forwards;
+    flex-direction: column;
+    gap: 18px;
 }
 
-.hero-visual img {
-    width: 650px;
-    height: 440px; /* TIDAK TERLALU PANJANG */
-    object-fit: cover;
-
-    border-radius: 20px;
-    border: 1px solid rgba(124,58,237,0.45);
-
-    background: linear-gradient(
-        180deg,
-        rgba(15,23,42,0.9),
-        rgba(2,6,23,0.9)
-    );
-
-    box-shadow:
-        0 0 0 6px rgba(124,58,237,0.08),
-        0 35px 80px rgba(0,0,0,0.65);
-
-    animation: float 6s ease-in-out infinite;
-    transition: 
-        transform .5s ease,
-        box-shadow .5s ease;
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: rgba(15,23,42,.85);
+    border: 1px solid rgba(124,58,237,.3);
+    color: #e5e7eb;
 }
 
-/* HOVER = LEBIH HIDUP */
-.hero-visual img:hover {
-    transform: translateY(-12px) scale(1.015);
-    box-shadow:
-        0 0 0 10px rgba(124,58,237,0.15),
-        0 45px 100px rgba(124,58,237,0.35);
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #22d3ee;
+}
+
+.contact-btn {
+    margin-top: 20px;
+    align-self: center;
+    padding: 16px 46px;
+    border-radius: 999px;
+    background: linear-gradient(135deg,#7c3aed,#22d3ee);
+    color: #020617;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* =========================
+   REVEAL
+========================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: .9s cubic-bezier(.19,1,.22,1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* =========================
@@ -297,303 +297,20 @@ body {
 ========================= */
 @media (max-width: 900px) {
     .hero {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         text-align: center;
+        padding: 120px 32px 80px;
     }
 
-    .hero-visual {
-        margin-top: 60px;
+    section {
+        padding: 120px 32px;
     }
 
-    .hero-visual img {
-        width: 280px;
-        height: 360px;
-    }
-}
-
-
-
-/* =========================
-   SECTION GLOBAL
-========================= */
-section {
-    max-width: 900px;
-    margin: 160px auto;
-    padding: 0 80px;
-    animation: fadeSlide 1.4s ease forwards;
-}
-
-section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
-    padding-left: 14px;
-    border-left: 4px solid #7c3aed;
-    animation: float 5s ease-in-out infinite;
-}
-
-section p {
-    color: #cbd5f5;
-    line-height: 1.9;
-    animation: float 6s ease-in-out infinite;
-}
-
-/* =========================
-   SKILLS → BUTTON
-========================= */
-.skills ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px;
-    list-style: none;
-    margin-top: 30px;
-}
-
-.skills li {
-    padding: 12px 28px;
-    border-radius: 999px;
-    background: rgba(124,58,237,0.12);
-    border: 1px solid rgba(124,58,237,0.4);
-    color: #cbd5f5;
-    cursor: default;
-    animation: float 4s ease-in-out infinite;
-    transition: 
-        background .3s,
-        box-shadow .3s,
-        transform .3s;
-}
-
-.skills li:hover {
-    background: linear-gradient(135deg, #7c3aed, #22d3ee);
-    color: #020617;
-    box-shadow: 0 0 20px rgba(124,58,237,0.7);
-    transform: translateY(-6px);
-}
-
-.skills h2 {
-    font-size: 1.5rem;
-    text-align: center;       /* Judul Skills di tengah */
-    margin-bottom: 30px;
-    padding-left: 0;          /* Hilangkan garis kiri dari section h2 global */
-    border-left: none;
-    animation: float 5s ease-in-out infinite;
-}
-
-/* Tambahan: garis aksen di bawah judul Skills seperti Project */
-.skills h2::after {
-    content: "";
-    display: block;
-    width: 60px;
-    height: 4px;
-    margin: 18px auto 0;
-    background: linear-gradient(135deg, #7c3aed, #22d3ee);
-    border-radius: 999px;
-}
-
-/* =========================
-   PROJECT SECTION
-========================= */
-.project {
-    max-width: 1200px;
-    margin: 160px auto;
-    padding: 0 80px;
-}
-
-/* JUDUL PROJECT DI TENGAH */
-.project h2 {
-    text-align: center;
-    margin-bottom: 70px;
-    padding-left: 0;
-    border-left: none;
-    position: relative;
-}
-
-/* GARIS AKSEN DI BAWAH JUDUL */
-.project h2::after {
-    content: "";
-    display: block;
-    width: 60px;
-    height: 4px;
-    margin: 18px auto 0;
-    background: linear-gradient(135deg, #7c3aed, #22d3ee);
-    border-radius: 999px;
-}
-
-/* GRID KHUSUS CARD */
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-}
-
-/* CARD PROJECT */
-.project .card {
-    background: linear-gradient(
-        180deg,
-        rgba(15,23,42,0.9),
-        rgba(2,6,23,0.9)
-    );
-    border: 1px solid rgba(124,58,237,0.35);
-    border-radius: 18px;
-    padding: 32px 34px;
-
-    position: relative;
-    overflow: hidden;
-
-    animation: projectFloat 6s ease-in-out infinite;
-    transition: 
-        transform .4s ease,
-        box-shadow .4s ease,
-        border .4s ease;
-}
-
-/* GLOW */
-.project .card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-        circle at top left,
-        rgba(124,58,237,0.25),
-        transparent 60%
-    );
-    opacity: 0;
-    transition: opacity .4s;
-}
-
-.project .card:hover::before {
-    opacity: 1;
-}
-
-.project .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 60px rgba(124,58,237,0.25);
-    border-color: #7c3aed;
-}
-
-/* TEXT */
-.project .card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 14px;
-}
-
-.project .card p {
-    color: #cbd5f5;
-    line-height: 1.8;
-    margin-bottom: 26px;
-}
-
-/* BUTTON */
-.project .card::after {
-    content: "Lihat Project";
-    display: inline-block;
-    padding: 12px 28px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #7c3aed, #22d3ee);
-    color: #020617;
-    font-weight: 600;
-    font-size: 0.85rem;
-    cursor: pointer;
-    animation: buttonPulse 3s ease-in-out infinite;
-}
-
-/* RESPONSIVE */
-@media (max-width: 1024px) {
-    .project-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
     .project {
-        padding: 0 24px;
+        padding: 120px 32px;
     }
 
     .project-grid {
         grid-template-columns: 1fr;
     }
 }
-
-
-
-/* =========================
-   CONTACT BUTTON
-========================= */
-.contact {
-    text-align: center;
-}
-
-.contact-btn {
-    display: inline-block;
-    margin-top: 40px;
-    padding: 16px 46px;
-    border-radius: 999px;
-
-    background: linear-gradient(135deg, #7c3aed, #22d3ee);
-    color: #020617;
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-decoration: none;
-
-    box-shadow:
-        0 0 0 rgba(124,58,237,0),
-        0 20px 50px rgba(124,58,237,0.35);
-
-    animation: buttonPulse 3s ease-in-out infinite;
-    transition: transform .4s ease, box-shadow .4s ease;
-}
-
-.contact-btn:hover {
-    transform: translateY(-6px);
-    box-shadow:
-        0 0 30px rgba(124,58,237,0.8),
-        0 30px 70px rgba(34,211,238,0.4);
-}
-
-/* =========================
-   FULLSCREEN SECTION (ABOUT, SKILLS, CONTACT)
-========================= */
-.full-section {
-    min-height: 100vh;
-    padding: 140px 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-/* WRAPPER KONTEN */
-.full-section .content {
-    max-width: 800px;
-    animation: fadeSlide 1.6s ease forwards;
-}
-
-/* JUDUL DI TENGAH */
-.full-section h2 {
-    font-size: 2rem;
-    margin-bottom: 26px;
-    padding-left: 0;
-    border-left: none;
-    position: relative;
-    animation: float 5s ease-in-out infinite;
-}
-
-/* GARIS AKSEN BAWAH JUDUL */
-.full-section h2::after {
-    content: "";
-    display: block;
-    width: 70px;
-    height: 4px;
-    margin: 18px auto 0;
-    background: linear-gradient(135deg, #7c3aed, #22d3ee);
-    border-radius: 999px;
-}
-
-/* DESKRIPSI DI TENGAH */
-.full-section p {
-    margin-top: 30px;
-    font-size: 1.05rem;
-    line-height: 1.9;
-    color: #cbd5f5;
-    animation: float 6s ease-in-out infinite;
-}
-
