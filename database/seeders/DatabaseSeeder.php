@@ -15,7 +15,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
         ]);
 
-        // Data project 
+        // Data project
         $this->call(ProjectSeeder::class);
+
+        // Data skills
+        $this->call(\Database\Seeders\SkillSeeder::class);
     }
 }

@@ -1,5 +1,5 @@
 /* =========================
-   RESET & BASE
+    RESET & BASE
 ========================= */
 * {
     margin: 0;
@@ -12,57 +12,250 @@ body {
     background: radial-gradient(circle at top, #0f172a, #020617 75%);
     color: #e5e7eb;
     overflow-x: hidden;
+    cursor: none; /* hide default cursor for custom cursor */
 }
 
 /* =========================
-   ANIMATION
+    PRELOADER SUPER HEDON
 ========================= */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #020617;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+.preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+.preloader-content {
+    text-align: center;
+}
+.preloader-text {
+    font-size: 5rem;
+    font-weight: 900;
+    background: linear-gradient(45deg, #7c3aed, #22d3ee, #f472b6, #7c3aed);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 2s infinite, glitchText 1.5s infinite;
+}
+.preloader-sub {
+    color: #94a3b8;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    letter-spacing: 4px;
+    animation: pulseGlow 2s infinite;
+}
+
+/* =========================
+    CUSTOM CURSOR
+========================= */
+.premium-cursor {
+    width: 8px;
+    height: 8px;
+    background: #22d3ee;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: difference;
+    transition: transform 0.1s ease;
+    box-shadow: 0 0 20px #7c3aed;
+}
+.premium-cursor-follower {
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(124, 58, 237, 0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99998;
+    transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    backdrop-filter: blur(4px);
+}
+
+/* =========================
+    PARTICLE BACKGROUND
+========================= */
+.particle-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: floatParticle linear infinite;
+    box-shadow: 0 0 10px currentColor;
+}
+
+/* =========================
+    SCROLL PROGRESS
+========================= */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #7c3aed, #22d3ee);
+    z-index: 99999;
+    transition: width 0.1s ease;
+    box-shadow: 0 0 20px #7c3aed;
+}
+
+/* =========================
+    ANIMATIONS
+========================= */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+@keyframes glitchText {
+    2%, 64% { transform: skew(0deg, 0deg); }
+    4%, 60% { transform: skew(2deg, 1deg); filter: hue-rotate(10deg); }
+    62% { transform: skew(-2deg, -1deg); filter: hue-rotate(-10deg); }
+}
+@keyframes pulseGlow {
+    0%,100% { text-shadow: 0 0 10px #7c3aed; }
+    50% { text-shadow: 0 0 30px #22d3ee; }
+}
 @keyframes float {
     0%,100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
 }
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+@keyframes floatParticle {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    50% { opacity: 0.3; }
+    100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+}
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+}
+@keyframes pulseSuccess {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(16,185,129,0.2); }
+    100% { transform: scale(1); }
+}
+@keyframes btnRipple {
+    0% { width: 0; height: 0; opacity: 0.5; }
+    100% { width: 300px; height: 300px; opacity: 0; }
+}
+@keyframes heroEntrance {
+    0% { opacity: 0; transform: translateY(50px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes glitchTitle {
+    0% { opacity: 0; text-shadow: 2px 2px 0 #7c3aed, -2px -2px 0 #22d3ee; filter: blur(2px); }
+    60% { opacity: 1; text-shadow: -2px 2px 0 #f472b6, 2px -2px 0 #22d3ee; filter: blur(0); }
+    100% { opacity: 1; text-shadow: none; }
+}
+@keyframes popImage {
+    0% { opacity: 0; transform: rotate(-5deg) scale(0.8); }
+    100% { opacity: 1; transform: rotate(0) scale(1); }
+}
 
 /* =========================
-   NAVBAR (STYLE ASLI – AMAN)
+    ENTRANCE ANIMATIONS PER SECTION
+========================= */
+.hero {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: heroEntrance 1.2s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+    animation-delay: 0.3s;
+}
+.hero-title {
+    opacity: 0;
+    animation: glitchTitle 1s ease forwards;
+    animation-delay: 0.6s;
+}
+.hero-visual {
+    opacity: 0;
+    transform: rotate(-5deg) scale(0.8);
+    animation: popImage 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 0.8s;
+}
+.about {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: heroEntrance 1s forwards;
+    animation-delay: 1.1s;
+}
+.skills {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: heroEntrance 1s forwards;
+    animation-delay: 1.4s;
+}
+.project {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: heroEntrance 1s forwards;
+    animation-delay: 1.7s;
+}
+.contact {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: heroEntrance 1s forwards;
+    animation-delay: 2s;
+}
+
+/* =========================
+    NAVBAR (dengan efek scroll)
 ========================= */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 72px; /* ⬅️ FIX biar gak nabrak hero */
+    height: 72px;
     padding: 16px 64px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(2,6,23,.65);
+    background: rgba(2,6,23,.8);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(124,58,237,0.2);
     z-index: 100;
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
-
-/* =========================
-   NAVBAR CONTENT (RAPI & MODERN)
-========================= */
-
-/* Brand / Logo kiri */
-.navbar .logo,
-.navbar .brand,
-.navbar h1,
-.navbar span {
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: .5px;
-    color: #e5e7eb;
+.navbar.scrolled {
+    background: rgba(2,6,23,0.98);
+    border-bottom: 1px solid rgba(124,58,237,0.4);
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
 }
-
-/* Wrapper menu kanan */
 .navbar ul {
-    list-style: none;          /* ❌ bulet ilang */
+    list-style: none;
     display: flex;
-    gap: 32px;                 /* ✅ jarak rapi */
+    gap: 32px;
     align-items: center;
 }
-
-/* Link menu */
 .navbar ul li a {
     position: relative;
     text-decoration: none;
@@ -71,13 +264,7 @@ body {
     color: #cbd5f5;
     transition: color .3s ease;
 }
-
-/* Hover warna */
-.navbar ul li a:hover {
-    color: #22d3ee;
-}
-
-/* Garis bawah animasi */
+.navbar ul li a:hover { color: #22d3ee; }
 .navbar ul li a::after {
     content: "";
     position: absolute;
@@ -89,42 +276,34 @@ body {
     transition: width .3s ease;
     border-radius: 999px;
 }
-
-.navbar ul li a:hover::after {
-    width: 100%;
-}
-
+.navbar ul li a:hover::after { width: 100%; }
 
 /* =========================
-   HERO (DIRAPIIN)
+    HERO
 ========================= */
 .hero {
     min-height: calc(100vh - 72px);
-    padding: 140px 80px 80px; /* ⬅️ lebih padat */
+    padding: 140px 80px 80px;
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     align-items: center;
     gap: 64px;
 }
-
-.hero-text {
-    max-width: 620px;
+.hero-text h1 { 
+    font-size: 3.2rem; 
 }
-
-.hero-text h1 {
-    font-size: 3.2rem;
+.hero-text span { 
+    background: linear-gradient(135deg, #7c3aed, #22d3ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 8s ease infinite;
+    text-shadow: 0 0 30px rgba(124,58,237,0.3);
 }
-
-.hero-text span {
-    color: #7c3aed;
+.hero-text p { 
+    margin-top: 18px; 
+    line-height: 1.75; 
+    color: #cbd5f5; 
 }
-
-.hero-text p {
-    margin-top: 18px;
-    line-height: 1.75;
-    color: #cbd5f5;
-}
-
 .btn {
     display: inline-block;
     margin-top: 30px;
@@ -134,43 +313,131 @@ body {
     color: #020617;
     font-weight: 600;
     text-decoration: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.3s ease;
 }
-
-/* =========================
-   HERO IMAGE (FIX LONJONG)
-========================= */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    z-index: -1;
+}
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+.btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 20px 30px -10px rgba(124,58,237,0.5);
+}
 .hero-visual {
-    display: flex;
-    justify-content: center;
+    position: relative;
+    padding-right: 40px;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
-
 .hero-visual img {
     width: 100%;
-    max-width: 360px;          /* ⬅️ NGIKUT TEKS KIRI */
-    height: auto;              /* ⬅️ PENTING */
-    aspect-ratio: auto;        /* ⬅️ MATIIN PAKSAAN */
-    object-fit: contain;       /* ⬅️ GAK KETARIK */
-    border-radius: 22px;
-    border: 1px solid rgba(124,58,237,.4);
-    box-shadow: 0 35px 80px rgba(0,0,0,.6);
-    animation: float 6s ease-in-out infinite;
+    max-width: 550px;
+    height: 450px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 0px;
+    border-left: 5px solid #7c3aed;
+    border-top: 1px solid rgba(34,211,238,0.5);
+    border-right: 1px solid rgba(34,211,238,0.5);
+    border-bottom: 1px solid rgba(34,211,238,0.5);
+    box-shadow: 30px 30px 0px rgba(124,58,237,0.1);
+    animation: float 5s ease-in-out infinite;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: saturate(1.2) contrast(1.1);
+}
+.hero-visual img:hover {
+    max-width: 580px;
+    box-shadow: 15px 15px 0px #22d3ee;
+    transform: translate(-10px, -5px);
+    border-left-color: #22d3ee;
+}
+.hero-visual::before {
+    content: "FATTAH";
+    position: absolute;
+    bottom: -20px;
+    right: 60px;
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.03);
+    z-index: -1;
+    white-space: nowrap;
 }
 
 /* =========================
-   SECTION GLOBAL (LAYER FEEL)
+    MARQUEE
+========================= */
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    background: rgba(124,58,237,0.05);
+    padding: 15px 0;
+    margin: 30px 0;
+    border-top: 1px solid rgba(124,58,237,0.2);
+    border-bottom: 1px solid rgba(34,211,238,0.2);
+}
+.marquee-content {
+    display: flex;
+    animation: marquee 20s linear infinite;
+    gap: 50px;
+}
+.marquee-item {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    white-space: nowrap;
+}
+.marquee-item i {
+    color: #22d3ee;
+    margin-right: 10px;
+}
+
+/* =========================
+    SECTION GLOBAL
 ========================= */
 section {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 140px 80px; /* ⬅️ lebih rapih antar layer */
+    padding: 140px 80px;
+    position: relative;
+    z-index: 1;
 }
-
+section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(124,58,237,0.03) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: -1;
+}
 section h2 {
-    font-size: 1.9rem;
-    margin-bottom: 26px;
+    font-size: 2.2rem;
+    margin-bottom: 50px;
     text-align: center;
 }
-
 section h2::after {
     content: "";
     display: block;
@@ -182,135 +449,302 @@ section h2::after {
 }
 
 /* =========================
-   FULL SECTION
+    ABOUT
 ========================= */
-.full-section {
-    min-height: auto;          /* ⬅️ JANGAN PAKSA 100vh */
-    text-align: center;
-}
-
-/* =========================
-   SKILLS
-========================= */
-.skills ul {
+.about .content > div {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    gap: 60px;
     flex-wrap: wrap;
-    gap: 18px;
-    margin-top: 36px;
-    list-style: none;
 }
-
-.skills li {
-    padding: 14px 30px;
-    border-radius: 999px;
-    background: rgba(124,58,237,.12);
-    border: 1px solid rgba(124,58,237,.4);
-    animation: float 5s ease-in-out infinite;
+.about img {
+    width: 500px;
+    height: 280px;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+    border: 4px solid #2c3e50;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+}
+.about img:hover {
+    transform: translateY(-5px) scale(1.02) rotate(1deg);
+    box-shadow: 0 20px 40px rgba(124,58,237,0.4);
+    border-color: #7c3aed;
+}
+.about .badge-container {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+}
+.about .badge {
+    background: #2c3e50;
+    color: white;
+    padding: 6px 18px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.about .badge:last-child {
+    background: #34495e;
+}
+.about p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #ecf0f1;
+    margin: 0;
+    flex: 1;
+    min-width: 300px;
 }
 
 /* =========================
-   PROJECT
+    SKILLS (progress bar style)
 ========================= */
-.project {
-    max-width: 1200px;
-    padding: 160px 80px;
+.skills-list {
+    list-style: none;
+    padding: 0;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.skill-item {
+    margin-bottom: 25px;
+}
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+.skill-bar {
+    height: 12px;
+    background: rgba(124,58,237,0.2);
+    border-radius: 999px;
+    overflow: hidden;
+}
+.skill-progress {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #7c3aed, #22d3ee);
+    border-radius: 999px;
+    transition: width 1.5s cubic-bezier(0.19,1,0.22,1);
+    box-shadow: 0 0 15px #7c3aed;
 }
 
+/* =========================
+    PROJECT
+========================= */
 .project-grid {
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    gap: 40px;
+    gap: 30px;
 }
-
 .project .card {
     background: rgba(15,23,42,.9);
     border-radius: 20px;
     padding: 32px;
     border: 1px solid rgba(124,58,237,.3);
     transition: .4s cubic-bezier(.19,1,.22,1);
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
-
 .project .card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-10px) scale(1.02) rotateX(2deg) rotateY(2deg);
     box-shadow: 0 25px 70px rgba(124,58,237,.35);
+    border-color: #7c3aed;
+}
+.project .card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.6s ease;
+}
+.project .card:hover::after {
+    left: 100%;
 }
 
 /* =========================
-   CONTACT
+    CONTACT
 ========================= */
-.contact {
-    text-align: center;
+.contact-grid-container {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+    text-align: left;
 }
-
+.contact-left {
+    flex: 1.2;
+}
+.contact-right {
+    flex: 0.8;
+    position: sticky;
+    top: 120px;
+}
+.contact-subtitle {
+    margin-bottom: 25px;
+    line-height: 1.6;
+    color: #cbd5f5;
+}
 .contact-form {
-    max-width: 520px;
-    margin: 40px auto 0;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 15px;
 }
-
 .contact-form input,
 .contact-form textarea {
     width: 100%;
-    padding: 14px 18px;
+    padding: 16px 20px;
     border-radius: 12px;
     background: rgba(15,23,42,.85);
     border: 1px solid rgba(124,58,237,.3);
     color: #e5e7eb;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
 }
-
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
     border-color: #22d3ee;
+    background: rgba(15,23,42,1);
+    box-shadow: 0 0 0 3px rgba(34,211,238,0.1);
+    transform: translateY(-2px);
 }
-
 .contact-btn {
-    margin-top: 20px;
-    align-self: center;
-    padding: 16px 46px;
+    display: inline-block;
+    padding: 16px 40px;
     border-radius: 999px;
     background: linear-gradient(135deg,#7c3aed,#22d3ee);
     color: #020617;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.contact-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    z-index: -1;
+}
+.contact-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+.contact-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(34,211,238,0.3);
+}
+.wa-card {
+    background: rgba(15,23,42,0.7);
+    padding: 40px 30px;
+    border-radius: 24px;
+    border: 1px solid rgba(124,58,237,0.2);
+    text-align: center;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+}
+.wa-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(124,58,237,0.2);
+    border-color: #7c3aed;
+}
+.wa-card h3 {
+    font-size: 1.4rem;
+    margin: 15px 0 25px;
+    background: linear-gradient(135deg, #fff, #cbd5f5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.error-list { 
+    color: #fb7185; 
+    list-style: none; 
+    margin-bottom: 20px; 
+    font-size: 0.9rem; 
+    text-align: left; 
+}
+.success-msg { 
+    color: #34d399; 
+    margin-bottom: 20px; 
+    font-weight: 600; 
 }
 
 /* =========================
-   REVEAL
+    RESPONSIVE
+========================= */
+@media (max-width: 950px) {
+    .contact-grid-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .contact-left, .contact-right {
+        width: 100%;
+        text-align: center;
+    }
+    .contact-grid-container .contact-form {
+        max-width: 550px;
+        margin: 0 auto;
+    }
+    .hero { 
+        grid-template-columns: 1fr; 
+        text-align: center; 
+        padding: 120px 32px 80px; 
+    }
+    section { 
+        padding: 100px 32px; 
+    }
+    .project-grid { 
+        grid-template-columns: 1fr; 
+    }
+    .about .content > div {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .about img {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        aspect-ratio: 16/9;
+    }
+    .about .badge-container {
+        justify-content: center;
+    }
+    .marquee-item {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+    }
+    .navbar {
+        padding: 16px 32px;
+    }
+}
+
+/* =========================
+    REVEAL (untuk scroll)
 ========================= */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
     transition: .9s cubic-bezier(.19,1,.22,1);
 }
-
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 900px) {
-    .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 120px 32px 80px;
-    }
-
-    section {
-        padding: 120px 32px;
-    }
-
-    .project {
-        padding: 120px 32px;
-    }
-
-    .project-grid {
-        grid-template-columns: 1fr;
-    }
 }
