@@ -15,12 +15,12 @@ class ProjectController extends Controller
     // ===============================
     public function index($view = 'portofolio.portofolio')
 {
-    $skills = Skill::all();      // ambil data skills
-    $projects = Projects::all(); // ambil data projects
+    $skills = Skill::all();
+    $projects = Projects::all();
+    $services = \App\Models\Service::all(); // Fetch services
     $message = $projects->isEmpty() ? 'Data projects masih kosong' : null;
 
-    // Kirim ke view semua data yang dibutuhkan
-    return view($view, compact('projects', 'skills', 'message'));
+    return view($view, compact('projects', 'skills', 'services', 'message'));
 }
 
 

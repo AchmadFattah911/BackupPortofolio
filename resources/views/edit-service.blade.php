@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('header')
     <div class="flex items-center gap-3">
-        <i class="fa-solid fa-pen-to-square text-pink-400 text-2xl animate-pulse"></i>
+        <i class="fa-solid fa-pen-nib text-pink-400 text-2xl animate-pulse"></i>
         <h2 class="font-bold text-2xl text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 tracking-widest uppercase" style="font-family: 'Courier New', Courier, monospace;">
-            Override Project: <span class="text-gray-300">[{{ $project->title }}]</span>
+            Override Service Protocol
         </h2>
     </div>
 @endsection
@@ -23,7 +23,7 @@
         content: '';
         position: absolute;
         top: 0; left: 0; right: 0; height: 2px;
-        background: linear-gradient(90deg, transparent, #ec4899, transparent);
+        background: linear-gradient(90deg, transparent, #ec4899, #8b5cf6, transparent);
     }
 
     .cyber-input {
@@ -50,13 +50,11 @@
     }
 </style>
 
-@section('content')
 <div class="py-10">
-    <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8" x-data="{ show: false }" x-init="setTimeout(() => show = true, 100)">
-
-        <div
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8" x-data="{ show: false }" x-init="setTimeout(() => show = true, 100)">
+        <div 
             x-show="show"
-            x-transition:enter="transition ease-out duration-700"
+            x-transition:enter="transition-all ease-out duration-700"
             x-transition:enter-start="opacity-0 -translate-y-6"
             x-transition:enter-end="opacity-100 translate-y-0"
         >
@@ -73,33 +71,47 @@
                     </div>
                 @endif
 
-                <form action="{{ route('projects.update', $project->id) }}" method="POST" class="space-y-8">
+                <form action="{{ route('services.update', $service->id) }}" method="POST" class="space-y-6">
                     @csrf
-                    @method('PUT') 
+                    @method('PUT')
+
                     <div>
-                        <label class="block text-sm font-bold text-pink-400 mb-2 uppercase tracking-wide font-mono"><i class="fa-solid fa-terminal mr-2"></i>Project Title</label>
+                        <label class="block text-sm font-bold text-pink-400 mb-2 uppercase tracking-wide font-mono"><i class="fa-solid fa-terminal mr-2"></i>Designation (Title)</label>
                         <input
                             type="text"
                             name="title"
-                            value="{{ old('title', $project->title) }}"
-                            placeholder="Enter project designation"
+                            value="{{ old('title', $service->title) }}"
                             class="cyber-input w-full px-4 py-3 bg-gray-900 text-pink-300 placeholder-gray-600 focus:outline-none transition duration-300 font-mono text-sm"
                             required
                         >
                     </div>
 
                     <div>
-                        <label class="block text-sm font-bold text-cyan-400 mb-2 uppercase tracking-wide font-mono"><i class="fa-solid fa-align-left mr-2"></i>Description Payload</label>
+                        <label class="block text-sm font-bold text-purple-400 mb-2 uppercase tracking-wide font-mono"><i class="fa-solid fa-icons mr-2"></i>Icon Class</label>
+                        <div class="flex items-center gap-4">
+                            <input
+                                type="text"
+                                name="icon"
+                                value="{{ old('icon', $service->icon) }}"
+                                class="cyber-input w-full px-4 py-3 bg-gray-900 text-purple-300 placeholder-gray-600 focus:outline-none transition duration-300 font-mono text-sm"
+                                required
+                            >
+                            <i class="{{ $service->icon }} text-2xl text-purple-400 bg-gray-800 p-2 border border-gray-700 rounded-lg shadow-inner"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-cyan-400 mb-2 uppercase tracking-wide font-mono"><i class="fa-solid fa-file-code mr-2"></i>Payload (Description)</label>
                         <textarea
                             name="description"
-                            placeholder="Inject project parameters here..."
-                            rows="5"
-                            class="cyber-input w-full px-4 py-3 bg-gray-900 text-cyan-300 placeholder-gray-600 focus:outline-none transition duration-300 resize-none font-mono text-sm"
-                        >{{ old('description', $project->description) }}</textarea>
+                            rows="4"
+                            class="cyber-input w-full px-4 py-3 bg-gray-900 text-cyan-200 placeholder-gray-600 focus:outline-none transition duration-300 font-mono text-sm"
+                            required
+                        >{{ old('description', $service->description) }}</textarea>
                     </div>
 
                     <div class="flex justify-between items-center pt-6 border-t border-gray-700">
-                        <a href="{{ route('dashboard') }}"
+                        <a href="{{ route('services.index') }}"
                            class="px-5 py-2.5 border border-gray-600 text-gray-400 hover:bg-gray-800 hover:text-white transition duration-300 text-sm font-bold font-mono tracking-widest uppercase">
                             <i class="fa-solid fa-xmark mr-1"></i> ABORT
                         </a>
@@ -108,11 +120,10 @@
                             type="submit"
                             class="cyber-button px-8 py-3 text-white font-bold transition duration-300 text-sm uppercase tracking-widest flex items-center gap-2"
                         >
-                            <i class="fa-solid fa-bolt"></i> FORCE UPDATE
+                            <i class="fa-solid fa-bolt"></i> FORCE OVERRIDE
                         </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>

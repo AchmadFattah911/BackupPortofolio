@@ -27,19 +27,22 @@
 
     <div class="project-list drag-scroll">
 
-        @if(isset($message) && $message)
-            <p class="reveal">{{ $message }}</p>
-        @endif
+            @if(isset($projects) && $projects->count())
+        @foreach($projects as $projectItem)
+            <div class="project-card reveal">
 
-        @if(isset($projects) && $projects->count())
-            @foreach($projects as $projectItem)
-                <div class="project-card reveal">
-                    <h3>{{ $projectItem->title }}</h3>
-                    <p>{{ $projectItem->description }}</p>
-                    <a href="{{ $projectItem->link ?? '#' }}" class="btn">Lihat Project</a>
-                </div>
-            @endforeach
-        @endif
+                <!-- GAMBAR PROJECT -->
+                <img src="{{ $projectItem->image ?? '/img/default.png' }}" alt="Project Image" class="project-img">
+
+                <!-- TEXT -->
+                <h3>{{ $projectItem->title }}</h3>
+                <p>{{ $projectItem->description }}</p>
+
+                <a href="{{ $projectItem->link ?? '#' }}" class="btn">Lihat Project</a>
+
+            </div>
+        @endforeach
+    @endif
 
     </div>
 

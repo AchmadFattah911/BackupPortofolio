@@ -71,6 +71,29 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 // ===============================
+// DASHBOARD + CRUD CONTACTS (INBOX)
+// ===============================
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard/contacts', [ContactController::class, 'index'])
+        ->name('contacts.index');
+
+    Route::delete('/dashboard/contacts/{contact}', [ContactController::class, 'destroy'])
+        ->name('contacts.destroy');
+});
+
+// ===============================
+// DASHBOARD + CRUD SERVICES
+// ===============================
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard/services', [\App\Http\Controllers\ServiceController::class, 'index'])->name('services.index');
+    Route::get('/dashboard/services/create', [\App\Http\Controllers\ServiceController::class, 'create'])->name('services.create');
+    Route::post('/dashboard/services', [\App\Http\Controllers\ServiceController::class, 'store'])->name('services.store');
+    Route::get('/dashboard/services/{service}/edit', [\App\Http\Controllers\ServiceController::class, 'edit'])->name('services.edit');
+    Route::put('/dashboard/services/{service}', [\App\Http\Controllers\ServiceController::class, 'update'])->name('services.update');
+    Route::delete('/dashboard/services/{service}', [\App\Http\Controllers\ServiceController::class, 'destroy'])->name('services.destroy');
+});
+
+// ===============================
 // PROFILE
 // ===============================
 Route::middleware('auth')->group(function () {

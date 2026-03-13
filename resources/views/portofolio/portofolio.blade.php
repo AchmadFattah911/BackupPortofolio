@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- HERO -->
-<div class="hero" id="home">
+<div class="hero reveal" id="home">
     <div class="hero-text">
         <h1 class="hero-title">
             Halo, Saya <span id="typing" class="typing-text"></span>
@@ -13,99 +13,402 @@
 
         <p class="hero-desc">
             Web Developer pemula yang sedang belajar membangun
-            website modern menggunakan HTML, CSS, dan Laravel.
+            website modern menggunakan HTML, CSS, dan Laravel. Saya memiliki passion dalam mendesain antarmuka yang clean dan responsif.
         </p>
 
-        <a href="#project" class="btn hero-btn">
-            Lihat Project
+        <a href="#project" class="hero-btn">
+            Lihat Project <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
         </a>
     </div>
 
-    <div class="hero-visual parallax">
-        <img src="{{ asset('image/profile.png') }}" alt="Foto Fattah">
+    <div class="hero-visual z-10">
+        <img class="minimal-img" src="{{ asset('image/profile.png') }}" alt="Foto Fattah" onerror="this.src='https://i.pinimg.com/1200x/12/c7/26/12c726b26ed10283077c946882d64503.jpg'">
     </div>
+    
+    <!-- Floating Tech Icons (Global Hero Wrapper) -->
+    <div class="floating-tech floating-global float-1"><i class="fa-brands fa-laravel"></i></div>
+    <div class="floating-tech floating-global float-2"><i class="fa-brands fa-php"></i></div>
+    <div class="floating-tech floating-global float-3"><i class="fa-brands fa-js"></i></div>
+    <div class="floating-tech floating-global float-4"><i class="fa-brands fa-react"></i></div>
+    <div class="floating-tech floating-global float-5"><i class="fa-brands fa-github"></i></div>
 </div>
 
+<style>
+/* GLOBAL FLOATING ICONS CSS */
+.floating-global {
+    position: absolute;
+    font-size: 2.5rem;
+    color: rgba(34, 211, 238, 0.5); /* Cyber cyan default */
+    z-index: 1; /* Di bawah foto dan text */
+    pointer-events: none;
+    filter: blur(1px);
+    transition: all 0.3s ease;
+}
+
+.float-1 { top: 10%; left: 5vw; color: rgba(239, 68, 68, 0.4); animation: floatAnim1 15s ease-in-out infinite alternate; }
+.float-2 { bottom: 10%; right: 5vw; color: rgba(124, 58, 237, 0.4); font-size: 3rem; animation: floatAnim2 18s ease-in-out infinite alternate-reverse; }
+.float-3 { top: 20%; right: 10vw; color: rgba(245, 158, 11, 0.4); font-size: 2rem; animation: floatAnim3 12s ease-in-out infinite alternate; }
+.float-4 { bottom: 15%; left: 10vw; color: rgba(34, 211, 238, 0.4); font-size: 3.5rem; animation: floatAnim4 20s ease-in-out infinite alternate-reverse; }
+.float-5 { top: 80%; left: 30vw; color: rgba(148, 163, 184, 0.3); font-size: 1.5rem; animation: floatAnim5 10s ease-in-out infinite alternate; }
+
+@keyframes floatAnim1 { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(100px, 80px) rotate(45deg); } }
+@keyframes floatAnim2 { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(-120px, -60px) rotate(-45deg); } }
+@keyframes floatAnim3 { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(-80px, 100px) rotate(90deg); } }
+@keyframes floatAnim4 { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(150px, -40px) rotate(-90deg); } }
+@keyframes floatAnim5 { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(-50px, -120px) rotate(180deg); } }
+</style>
+
 <!-- ABOUT -->
-<section class="about full-section reveal">
-    <div class="content">
-        <h2 style="font-size: 2.5rem; margin-bottom: 40px;">About Me</h2>
-        
-        <!-- FOTO DI KIRI, TEXT DI KANAN - V2 -->
-        <div style="display: flex; align-items: center; gap: 60px; flex-wrap: wrap;">
-            
-            <!-- FOTO UKURAN BIG SIZE -->
-            <div style="flex: 0 0 auto;">
-                <img src="https://i.pinimg.com/1200x/12/c7/26/12c726b26ed10283077c946882d64503.jpg" 
-                     alt="Foto Profil" 
-                     style="width: 500px; 
-                            height: 280px; 
-                            border-radius: 12px; 
-                            object-fit: cover; 
-                            display: block;
-                            border: 4px solid #2c3e50;
-                            box-shadow: 0 15px 30px rgba(0,0,0,0.4);">
-                
-                <!-- Badge di bawah foto -->
-                <div style="margin-top: 15px; display: flex; gap: 15px;">
-                    <span style="background: #2c3e50; color: white; padding: 6px 18px; border-radius: 6px; font-size: 0.9rem; font-weight: 600;">Cantik Nda?</span>
-                    <span style="background: #34495e; color: white; padding: 6px 18px; border-radius: 6px; font-size: 0.9rem; font-weight: 600;">My Bini</span>
-                </div>
+<section class="about" id="about">
+    <h2 class="section-title reveal">About Me</h2>
+    <div class="about-wrapper reveal">
+        <div class="about-image-wide" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-perspective="1000" data-tilt-glare="true" data-tilt-max-glare="0.5" style="transform-style: preserve-3d;">
+            <img class="wide-img animated-deep" src="{{ asset('image/akane_sakuramori.png') }}" alt="Akane Sakuramori">
+            <div class="about-badges" style="transform: translateZ(40px); bottom: 20px; position: absolute;">
+                <span class="badge"><i class="fa-solid fa-code" style="color: #3b82f6; margin-right: 5px;"></i> Clean Coder</span>
+                <span class="badge"><i class="fa-brands fa-laravel" style="color: #ef4444; margin-right: 5px;"></i> Laravel Artisan</span>
             </div>
-            
-            <!-- TEXT BIASA DI KANAN - TANPA BUNGKUS -->
-            <div style="flex: 1; min-width: 300px;">
-                <p style="font-size: 1.3rem; line-height: 1.8; color: #ecf0f1; margin: 0;">
-                    Saya adalah web developer yang fokus pada pembuatan UI modern,
-                    interaktif, dan performa tinggi menggunakan Laravel.
-                    Hobi saya bermain game PC seperti Steam, Riot, Roblox,
-                    dan Mobile Legends di mobile.
-                    Jika ingin bertanya lebih lanjut, silakan hubungi saya
-                    melalui menu contact di bawah.
-                </p>
-            </div>
+        </div>
+        <div class="about-content">
+            <p>
+                Saya adalah Software Engineer yang berfokus pada pembuatan antarmuka modern,
+                arsitektur yang terstruktur, dan performa tinggi menggunakan ekosistem Laravel modern.
+            </p>
+            <p style="margin-top: 15px;">
+                Saya memiliki ketertarikan mendalam dalam memecahkan masalah kompleks 
+                melalui proses optimasi *backend* dan menyusun *frontend* yang interaktif. 
+                Jika sedang mencari mitra untuk berkolaborasi atau membangun proyek digital, 
+                silakan hubungi saya melalui form di bawah ini!
+            </p>
         </div>
     </div>
 </section> 
 
 <!-- SKILLS -->
-<section class="skills full-section reveal">
-    <div class="content">
-        <h2>Skills</h2>
+<section class="skills reveal" id="skills">
+    <h2 class="section-title reveal">Skills</h2>
+    <div class="skills-bar-container reveal">
+        @forelse($skills as $skill)
+        <div class="skill-item">
+            <div class="skill-info">
+                <span class="skill-name"><i class="fa-solid fa-microchip" style="color: #22d3ee; margin-right: 8px;"></i>{{ $skill->name }}</span>
+                <span class="skill-level">0%</span>
+            </div>
+            <div class="skill-bar-bg">
+                <div class="skill-progress" data-level="{{ is_numeric($skill->level) ? $skill->level : 85 }}"></div>
+            </div>
+        </div>
+        @empty
+        <div class="skill-item">
+            <div class="skill-info">
+                <span class="skill-name"><i class="fa-brands fa-php" style="color: #7c3aed; margin-right: 8px;"></i>PHP</span>
+                <span class="skill-level">0%</span>
+            </div>
+            <div class="skill-bar-bg">
+                <div class="skill-progress" data-level="90"></div>
+            </div>
+        </div>
+        <div class="skill-item">
+            <div class="skill-info">
+                <span class="skill-name"><i class="fa-brands fa-js" style="color: #fbbf24; margin-right: 8px;"></i>JavaScript</span>
+                <span class="skill-level">0%</span>
+            </div>
+            <div class="skill-bar-bg">
+                <div class="skill-progress" data-level="85"></div>
+            </div>
+        </div>
+        <div class="skill-item">
+            <div class="skill-info">
+                <span class="skill-name"><i class="fa-brands fa-laravel" style="color: #ef4444; margin-right: 8px;"></i>Laravel</span>
+                <span class="skill-level">0%</span>
+            </div>
+            <div class="skill-bar-bg">
+                <div class="skill-progress" data-level="80"></div>
+            </div>
+        </div>
+        <div class="skill-item">
+            <div class="skill-info">
+                <span class="skill-name"><i class="fa-solid fa-wind" style="color: #0ea5e9; margin-right: 8px;"></i>Tailwind CSS</span>
+                <span class="skill-level">0%</span>
+            </div>
+            <div class="skill-bar-bg">
+                <div class="skill-progress" data-level="95"></div>
+            </div>
+        </div>
+        @endforelse
+    </div>
+</section>
 
-        @if ($skills->isEmpty())
-            <p class="text-center">Data skills masih kosong</p>
-        @else
-            <ul class="skills-list">
-                @foreach ($skills as $skill)
-                    <li class="skill-item">
-                        <div class="skill-header">
-                            <span class="skill-name">{{ $skill->name }}</span>
-                            <span class="skill-level">{{ $skill->level }}%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-level="{{ $skill->level }}"></div>
-                        </div>
-                    </li>
-                @endforeach
-            </ul>
-        @endif
+<style>
+/* CYBERPUNK PROGRESS BARS */
+.skills-bar-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.skill-item {
+    background: rgba(15, 23, 42, 0.4);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(124, 58, 237, 0.2), inset 0 0 10px rgba(34, 211, 238, 0.1);
+    border-color: rgba(34, 211, 238, 0.5);
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+}
+
+.skill-name {
+    color: #e2e8f0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.skill-level {
+    color: #22d3ee;
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+}
+
+.skill-bar-bg {
+    width: 100%;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.skill-progress {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #7c3aed, #22d3ee);
+    border-radius: 6px;
+    transition: width 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+}
+
+.skill-progress::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: bar-shine 2s infinite;
+}
+
+@keyframes bar-shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+</style>
+
+<!-- E.E (EDUCATION & EXPERIENCE) -->
+<section class="ee-section" id="ee" style="margin-top: 50px;">
+    <h2 class="section-title reveal" style="text-transform: uppercase;">E.E (Education & Experience)</h2>
+    <div class="resume-section reveal">
+        <!-- Education -->
+        <div>
+            <h3 class="resume-header"><i class="fa-solid fa-graduation-cap" style="color: #fbbf24;"></i> Education Phase</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2023 - Present</div>
+                    <h4 class="timeline-title">Software Engineering Student</h4>
+                    <p class="timeline-org">Vocational High School / IT Academy</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2020 - 2023</div>
+                    <h4 class="timeline-title">Junior High School</h4>
+                    <p class="timeline-org">Science & Technology Club</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience -->
+        <div>
+            <h3 class="resume-header"><i class="fa-solid fa-briefcase" style="color: #ea580c;"></i> Working Experience</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2025 - Present</div>
+                    <h4 class="timeline-title">Freelance Web Developer</h4>
+                    <p class="timeline-org">Self-Employed / Remote</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 10px;">Membangun berbagai landing page dan aplikasi web modern berbasis Laravel dan React.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2024</div>
+                    <h4 class="timeline-title">Frontend Intern</h4>
+                    <p class="timeline-org">Tech Startup Indonesia</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 10px;">Berpartisipasi dalam pengembangan antarmuka pengguna untuk dashboard admin klien.</p>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
 
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+    <h2 class="section-title reveal">Specialized Services</h2>
+    <div class="services-grid reveal">
+        @if(isset($services) && $services->isNotEmpty())
+            @foreach($services as $svc)
+                <div class="service-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.5">
+                    <div class="service-icon-bg"></div>
+                    <div class="service-icon"><i class="{{ $svc->icon }}"></i></div>
+                    <h3 class="service-title">{{ $svc->title }}</h3>
+                    <p class="service-desc">{{ $svc->description }}</p>
+                </div>
+            @endforeach
+        @else
+            <!-- Placeholder Services if DB is empty -->
+            <div class="service-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.5">
+                <div class="service-icon-bg"></div>
+                <div class="service-icon"><i class="fa-solid fa-code"></i></div>
+                <h3 class="service-title">Web Development</h3>
+                <p class="service-desc">Membangun website modern yang responsif dan performa tinggi menggunakan Laravel & ekosistem terkini.</p>
+            </div>
+            <div class="service-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.5">
+                <div class="service-icon-bg"></div>
+                <div class="service-icon"><i class="fa-brands fa-js"></i></div>
+                <h3 class="service-title">Frontend Engineering</h3>
+                <p class="service-desc">Merancang antarmuka interaktif dan dinamis menggunakan Vanilla JS & Alpine.js dengan animasi 3D.</p>
+            </div>
+            <div class="service-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.5">
+                <div class="service-icon-bg"></div>
+                <div class="service-icon"><i class="fa-solid fa-server"></i></div>
+                <h3 class="service-title">Backend Architecture</h3>
+                <p class="service-desc">Menyusun arsitektur sistem backend, database schema, dan manajemen server Linux yang handal.</p>
+            </div>
+        @endif
+    </div>
+</section>
+
+<style>
+/* SERVICES GRID CSS */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+    z-index: 2;
+    position: relative;
+}
+
+.service-card {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    border-radius: 12px;
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.service-card:hover {
+    transform: translateY(-15px);
+    border-color: rgba(34, 211, 238, 0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(34, 211, 238, 0.2), inset 0 0 20px rgba(124, 58, 237, 0.1);
+}
+
+/* Glowing Background in Icon */
+.service-icon-bg {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #7c3aed, #22d3ee);
+    filter: blur(25px);
+    border-radius: 50%;
+    opacity: 0.5;
+    transition: all 0.4s ease;
+}
+
+.service-card:hover .service-icon-bg {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.5);
+    filter: blur(30px);
+}
+
+.service-icon {
+    font-size: 3rem;
+    color: #e2e8f0;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+    transition: all 0.4s ease;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.service-card:hover .service-icon {
+    color: #22d3ee;
+    transform: scale(1.1) rotate(5deg);
+    text-shadow: 0 0 25px rgba(34, 211, 238, 0.8);
+}
+
+.service-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 1px;
+}
+
+.service-card:hover .service-title {
+    color: #f472b6;
+}
+
+.service-desc {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    line-height: 1.7;
+    position: relative;
+    z-index: 2;
+}
+</style>
+
+
 <!-- PROJECT -->
-<section class="project reveal" id="project">
-    <h2>Project</h2>
+<section class="project" id="project">
+    <h2 class="section-title reveal">Featured Projects</h2>
 
     <div class="project-grid">
         @if($projects->isEmpty())
-            <p>Data projects masih kosong</p>
+            <p style="color: var(--text-muted); text-align: center; width: 100%;">Data projects masih kosong</p>
         @else
             @foreach ($projects as $project)
-                <div class="card reveal">
-                    <h3>{{ $project->title }}</h3>
-                    <p>{{ $project->description }}</p>
+                <div class="project-card reveal" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000" data-tilt-glare="true" data-tilt-max-glare="0.5" style="transform-style: preserve-3d;">
+                    <h3 class="project-title" style="transform: translateZ(40px);">{{ $project->title }}</h3>
+                    <p class="project-desc" style="transform: translateZ(30px);">{{ $project->description }}</p>
+                    <a href="#" style="color: var(--accent-1); text-decoration: none; font-weight: 500; font-size: 0.95rem; margin-top: auto; display: inline-block; transform: translateZ(50px);">
+                        View Project <i class="fa-solid fa-arrow-right" style="margin-left: 5px; font-size: 0.8rem;"></i>
+                    </a>
                 </div>
             @endforeach
         @endif
@@ -113,12 +416,14 @@
 </section>
 
 <!-- CONTACT -->
-<section class="contact reveal" id="contact">
-    <h2>Contact</h2>
+<section class="contact" id="contact">
+    <h2 class="section-title reveal">Formulir Komplain</h2>
 
-    <div class="contact-grid-container">
-        <div class="contact-left">
-            <p class="contact-subtitle">Jika mengalami kendala, silakan isi form di bawah 👇</p>
+    <div class="contact-wrapper">
+        <div class="contact-left reveal">
+            <p style="color: var(--text-muted); margin-bottom: 25px; font-size: 1.1rem;">
+                Jika mengalami kendala atau ingin bekerja sama, silakan isi form di bawah ini <i class="fa-solid fa-hand-point-down" style="color: #eab308"></i>
+            </p>
             
             @if ($errors->any())
                 <ul class="error-list">
@@ -129,31 +434,114 @@
             @endif
 
             @if (session('success'))
-                <p class="success-msg">{{ session('success') }}</p>
+                <p class="success-msg"><i class="fa-solid fa-circle-check" style="margin-right: 8px;"></i> {{ session('success') }}</p>
             @endif
 
             <form action="{{ route('portofolio.send') }}" method="POST" class="contact-form">
                 @csrf
-                <input type="text" name="nama" placeholder="Nama" value="{{ old('nama') }}">
-                <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
-                <textarea name="deskripsi" placeholder="Tuliskan keluhan atau pesan kamu..." rows="5">{{ old('deskripsi') }}</textarea>
-                <button type="submit" class="contact-btn">Kirim Pesan</button>
+                <div class="form-group">
+                    <input type="text" name="nama" class="form-control" placeholder="Nama Lengkap" value="{{ old('nama') }}">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" placeholder="Alamat Email" value="{{ old('email') }}">
+                </div>
+                <div class="form-group">
+                    <textarea name="deskripsi" class="form-control" placeholder="Tuliskan keluhan atau pesan kamu..." rows="5">{{ old('deskripsi') }}</textarea>
+                </div>
+                <button type="submit" class="submit-btn">Kirim Pesan Sekarang <i class="fa-solid fa-paper-plane" style="margin-left: 8px;"></i></button>
             </form>
         </div>
 
-        <div class="contact-right">
-            <div class="wa-card">
-                <p>Atau hubungi langsung melalui WhatsApp:</p>
-                <h3 style="margin: 10px 0; color: #22d3ee;">+62 852-5282-9756</h3>
-                <a href="https://api.whatsapp.com/send?phone=6285252829756" target="_blank" class="contact-btn">
+        <div class="contact-info reveal">
+            <div class="wa-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-perspective="1000" data-tilt-glare="true" data-tilt-max-glare="0.4" style="transform-style: preserve-3d;">
+                <i class="fa-brands fa-whatsapp wa-icon" style="transform: translateZ(40px);"></i>
+                <p style="color: var(--text-muted); margin-bottom: 10px; transform: translateZ(20px);">Atau hubungi langsung melalui WhatsApp:</p>
+                <div class="wa-number" style="transform: translateZ(30px);">+62 852-5282-9756</div>
+                <a href="https://api.whatsapp.com/send?phone=6285252829756" target="_blank" class="wa-btn" style="transform: translateZ(50px);">
                     Chat via WhatsApp
                 </a>
+                
+                <div class="social-floats mt-6" style="transform: translateZ(30px); display: flex; justify-content: center; gap: 15px; margin-top: 25px;">
+                    <a href="https://instagram.com/fattah" target="_blank" class="social-icon-float ig-float" data-tilt data-tilt-scale="1.2">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://discord.com/users/fattah" target="_blank" class="social-icon-float dc-float" data-tilt data-tilt-scale="1.2">
+                        <i class="fa-brands fa-discord"></i>
+                    </a>
+                    <a href="https://github.com/fattah" target="_blank" class="social-icon-float gh-float" data-tilt data-tilt-scale="1.2">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
+<style>
+/* SOCIAL FLOATING ICONS CSS */
+.social-icon-float {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icon-float::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.social-icon-float:hover::before {
+    transform: translateY(0);
+}
+
+.social-icon-float:hover {
+    transform: translateY(-8px) scale(1.1);
+}
+
+.ig-float {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    box-shadow: 0 5px 15px rgba(220, 39, 67, 0.4);
+    animation: floatAnimation 3s ease-in-out infinite;
+}
+.ig-float:hover { box-shadow: 0 10px 20px rgba(220, 39, 67, 0.6), 0 0 15px rgba(220, 39, 67, 0.8); }
+
+.dc-float {
+    background: #5865F2;
+    box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4);
+    animation: floatAnimation 3.5s ease-in-out infinite 0.5s;
+}
+.dc-float:hover { box-shadow: 0 10px 20px rgba(88, 101, 242, 0.6), 0 0 15px rgba(88, 101, 242, 0.8); }
+
+.gh-float {
+    background: #333;
+    box-shadow: 0 5px 15px rgba(51, 51, 51, 0.4);
+    animation: floatAnimation 3.2s ease-in-out infinite 1s;
+}
+.gh-float:hover { box-shadow: 0 10px 20px rgba(51, 51, 51, 0.6), 0 0 15px rgba(255, 255, 255, 0.4); }
+
+@keyframes floatAnimation {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+</style>
+
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
 <script>
 /* ============================================ */
@@ -251,29 +639,36 @@ window.addEventListener('load', revealOnScroll);
    SKILL BARS ANIMATION
 ========================= */
 function animateSkillBars() {
+
     document.querySelectorAll('.skill-progress').forEach(bar => {
+
+        if (bar.classList.contains('animated')) return;
+
         const level = bar.getAttribute('data-level');
-        if (level && !bar.style.width) {
-            bar.style.width = level + '%';
-            
-            const parent = bar.closest('.skill-item');
-            const levelSpan = parent?.querySelector('.skill-level');
-            if (levelSpan) {
-                const target = parseInt(level);
-                let current = 0;
-                const increment = target / 50;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        levelSpan.textContent = target + '%';
-                        clearInterval(timer);
-                    } else {
-                        levelSpan.textContent = Math.floor(current) + '%';
-                    }
-                }, 20);
+
+        bar.style.width = level + '%';
+        bar.classList.add('animated');
+
+        const parent = bar.closest('.skill-item');
+        const levelSpan = parent.querySelector('.skill-level');
+
+        let current = 0;
+        const target = parseInt(level);
+
+        const counter = setInterval(() => {
+
+            current++;
+
+            levelSpan.textContent = current + '%';
+
+            if (current >= target) {
+                clearInterval(counter);
             }
-        }
+
+        }, 20);
+
     });
+
 }
 
 /* =========================
@@ -596,27 +991,8 @@ document.querySelectorAll('.btn, .contact-btn, .hero-btn').forEach(btn => {
 });
 
 /* =========================
-   3D TILT EFFECT
+   3D TILT EFFECT (REMOVED, NOW USING VANILLA TILT)
 ========================= */
-document.querySelectorAll('.card, .skill-item, .wa-card, .about img').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateY = ((x - centerX) / centerX) * 10;
-        const rotateX = ((centerY - y) / centerY) * 10;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
-    });
-});
 
 /* =========================
    HERO PARALLAX ENHANCED
@@ -645,7 +1021,7 @@ if (parallax) {
    TYPEWRITER EFFECT PREMIUM
 ========================= */
 const typingElement = document.getElementById('typing');
-const phrases = ["Fattah", "Web Developer", "UI Enthusiast", "Gamer", "Problem Solver"]; 
+const phrases = ["Fattah", "Software Engineer", "Fullstack Developer", "Problem Solver"]; 
 let phraseIdx = 0;
 let charIdx = 0;
 let isRemoving = false;
@@ -699,14 +1075,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(2,6,23,0.98)';
-        navbar.style.backdropFilter = 'blur(12px)';
-        navbar.style.borderBottom = '1px solid rgba(124,58,237,0.4)';
-        navbar.style.boxShadow = '0 10px 30px -10px rgba(0,0,0,0.5)';
+        navbar.style.background = 'rgba(15, 23, 42, 0.8)';
+        navbar.style.backdropFilter = 'blur(20px)';
+        navbar.style.boxShadow = '0 15px 40px rgba(0,0,0,0.6)';
+        navbar.style.padding = '0 45px';
+        navbar.style.top = '10px';
     } else {
-        navbar.style.background = 'rgba(2,6,23,0.8)';
-        navbar.style.borderBottom = '1px solid rgba(124,58,237,0.2)';
-        navbar.style.boxShadow = 'none';
+        navbar.style.background = 'rgba(15, 23, 42, 0.4)';
+        navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.4)';
+        navbar.style.padding = '0 35px';
+        navbar.style.top = '20px';
     }
 });
 
@@ -755,68 +1133,8 @@ function createParticles() {
 }
 
 /* =========================
-   CURSOR EFFECT
+   CURSOR EFFECT DELETED AS PER REQUEST
 ========================= */
-function createCustomCursor() {
-    if (document.querySelector('.premium-cursor') || window.innerWidth <= 768) return;
-    
-    const cursor = document.createElement('div');
-    cursor.className = 'premium-cursor';
-    cursor.style.cssText = `
-        width: 8px;
-        height: 8px;
-        background: #22d3ee;
-        border-radius: 50%;
-        position: fixed;
-        pointer-events: none;
-        z-index: 99999;
-        mix-blend-mode: difference;
-        transition: transform 0.1s ease;
-        box-shadow: 0 0 20px #7c3aed;
-    `;
-    
-    const cursorFollower = document.createElement('div');
-    cursorFollower.className = 'premium-cursor-follower';
-    cursorFollower.style.cssText = `
-        width: 40px;
-        height: 40px;
-        border: 2px solid rgba(124, 58, 237, 0.5);
-        border-radius: 50%;
-        position: fixed;
-        pointer-events: none;
-        z-index: 99998;
-        transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
-        backdrop-filter: blur(4px);
-    `;
-    
-    document.body.appendChild(cursor);
-    document.body.appendChild(cursorFollower);
-    
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        
-        setTimeout(() => {
-            cursorFollower.style.left = e.clientX + 'px';
-            cursorFollower.style.top = e.clientY + 'px';
-        }, 50);
-    });
-    
-    // Hover effect
-    document.querySelectorAll('a, button, .btn, .card, img').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.style.transform = 'scale(2)';
-            cursorFollower.style.transform = 'scale(1.5)';
-            cursorFollower.style.borderColor = '#22d3ee';
-        });
-        
-        el.addEventListener('mouseleave', () => {
-            cursor.style.transform = 'scale(1)';
-            cursorFollower.style.transform = 'scale(1)';
-            cursorFollower.style.borderColor = 'rgba(124, 58, 237, 0.5)';
-        });
-    });
-}
 
 /* =========================
    INTERSECTION OBSERVER
@@ -910,10 +1228,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create particles
     createParticles();
     
-    // Create custom cursor (non-touch)
-    if (!isTouchDevice()) {
-        createCustomCursor();
-    }
     
     // Initial reveal
     revealOnScroll();
