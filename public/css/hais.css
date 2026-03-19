@@ -114,53 +114,9 @@ section {
     animation: fadeUp 1.2s ease;
 }
 
-section h2 {
-    font-size: 2.4rem;
-    margin-bottom: 24px;
-    position: relative;
-}
-
-section h2::before {
-    content: "";
-    position: absolute;
-    left: -16px;
-    top: 6px;
-    width: 4px;
-    height: 28px;
-    background: #7c3aed;
-    border-radius: 2px;
-}
-
-section p {
-    max-width: 700px;
-    line-height: 1.8;
-    color: #cbd5f5;
-}
-
-/* SKILLS */
-.skills ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-top: 30px;
-}
-
-.skills li {
-    list-style: none;
-    padding: 12px 26px;
-    border-radius: 999px;
-    background: rgba(124,58,237,.15);
-    color: #cbd5f5;
-    border: 1px solid rgba(124,58,237,.4);
-    animation: floatSkill 5s ease-in-out infinite;
-}
-
-/* PROJECT SECTION */
+/* PROJECT HEADER */
 .project-header {
-    padding: 180px 80px 60px;
-    max-width: 1200px;
-    margin: auto;
-    animation: fadeUp 1.2s ease;
+    padding: 140px 80px 10px; /* dikurangi supaya dekat */
 }
 
 .project-header h1 {
@@ -170,6 +126,22 @@ section p {
 .project-header p {
     color: #cbd5f5;
     margin-top: 12px;
+}
+
+/* PROJECT WRAPPER (lebih dekat ke header) */
+.project-wrapper {
+    padding: 20px 80px 80px;
+    overflow: hidden;
+}
+
+/* PROJECT LIST */
+.project-list {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 32px;
 }
 
 /* SCROLL REVEAL */
@@ -184,48 +156,15 @@ section p {
     transform: translateY(0);
 }
 
-/* PROJECT CARD UPGRADE */
-.project-card {
-    transform-style: preserve-3d;
-    will-change: transform;
-}
-
-/* BUTTON MICRO INTERACTION */
-.btn {
-    position: relative;
-    overflow: hidden;
-}
-
-.btn::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,.25);
-    transform: translateX(-100%);
-    transition: .4s;
-}
-
-.btn:hover::before {
-    transform: translateX(0);
-}
-
-/* PROJECT LIST */
-.project-list {
-    max-width: 1200px;
-    margin: auto;
-    padding: 80px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-    gap: 32px;
-}
-
+/* PROJECT CARD */
 .project-card {
     background: rgba(15,23,42,.9);
-    padding: 32px;
     border-radius: 20px;
     border-left: 4px solid #7c3aed;
+    overflow: hidden;
     transition: .4s;
     animation: floatCard 6s ease-in-out infinite;
+    min-width: 320px;
 }
 
 .project-card:hover {
@@ -233,20 +172,37 @@ section p {
     box-shadow: 0 30px 70px rgba(124,58,237,.35);
 }
 
-.project-card h3 {
-    margin-bottom: 14px;
+/* PROJECT IMAGE */
+.project-img{
+    width:100%;
+    height:170px;
+    object-fit:cover;
+    display:block;
+    transition:0.4s;
 }
 
-.project-card p {
-    margin-bottom: 26px;
-    color: #cbd5f5;
+/* IMAGE HOVER ZOOM */
+.project-card:hover .project-img{
+    transform:scale(1.08);
+}
+
+/* TEXT */
+.project-card h3{
+    padding:18px 22px 8px;
+}
+
+.project-card p{
+    padding:0 22px 18px;
+    color:#cbd5f5;
+}
+
+/* BUTTON */
+.project-card .btn{
+    margin:0 22px 22px;
+    display:inline-block;
 }
 
 /* PROJECT DRAG SCROLL */
-.project-wrapper {
-    overflow: hidden;
-}
-
 .drag-scroll {
     display: flex;
     gap: 32px;
@@ -260,22 +216,13 @@ section p {
     cursor: grabbing;
 }
 
-/* hide scrollbar */
 .drag-scroll::-webkit-scrollbar {
     display: none;
 }
 
 .project-card {
-    min-width: 320px;
     flex-shrink: 0;
 }
-
-/* Prevent text selection while dragging */
-.drag-scroll,
-.drag-scroll * {
-    user-select: none;
-}
-
 
 /* CONTACT */
 .contact p {
@@ -307,35 +254,30 @@ section p {
     100% { transform: translateY(0); }
 }
 
-@keyframes floatSkill {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-    100% { transform: translateY(0); }
-}
-
 /* RESPONSIVE */
 @media (max-width: 900px) {
-    .hero {
-        grid-template-columns: 1fr;
-        padding: 160px 40px;
-    }
 
-    section,
-    .project-header,
-    .project-list {
-        padding: 100px 40px;
-    }
+.hero {
+    grid-template-columns: 1fr;
+    padding: 160px 40px;
+}
 
-    .navbar {
-        padding: 20px 40px;
-    }
+section,
+.project-header,
+.project-wrapper {
+    padding: 80px 40px;
+}
+
+.navbar {
+    padding: 20px 40px;
+}
+
 .project-card{
     width:300px;
     background:#111;
     border-radius:14px;
     overflow:hidden;
     padding:0;
-    transition:0.4s;
 }
 
 .project-img{
@@ -354,6 +296,5 @@ section p {
 
 .project-card .btn{
     margin:0 20px 20px;
-    display:inline-block;
 }
 }

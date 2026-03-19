@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -19,10 +22,16 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // Email & password statis
-        if ($request->email === 'admin@example.com' && $request->password === '12345') {
+        // Ambil user dari database
+        $user = User::where('email', $request->email)->first();
+
+        // Cek user & password
+        if ($user && Hash::check($request->password, $user->password)) {
+
+            // Simpan session
             $request->session()->put('logged_in', true);
-            $request->session()->put('email', 'admin@example.com');
+            $request->session()->put('email', $user->email);
+            $request->session()->put('is_admin', $user->is_admin);
 
             return redirect('/')->with('success', 'Login berhasil!');
         }

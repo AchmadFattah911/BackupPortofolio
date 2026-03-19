@@ -16,7 +16,7 @@
             website modern menggunakan HTML, CSS, dan Laravel. Saya memiliki passion dalam mendesain antarmuka yang clean dan responsif.
         </p>
 
-        <a href="#project" class="hero-btn">
+        <a href="/project" class="hero-btn">
             Lihat Project <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
         </a>
     </div>
@@ -63,7 +63,7 @@
     <h2 class="section-title reveal">About Me</h2>
     <div class="about-wrapper reveal">
         <div class="about-image-wide" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-perspective="1000" data-tilt-glare="true" data-tilt-max-glare="0.5" style="transform-style: preserve-3d;">
-            <img class="wide-img animated-deep" src="{{ asset('image/akane_sakuramori.png') }}" alt="Akane Sakuramori">
+            <img class="wide-img animated-deep" src="{{ asset('image/akane_sakuramori.jpg') }}" alt="Akane Sakuramori">
             <div class="about-badges" style="transform: translateZ(40px); bottom: 20px; position: absolute;">
                 <span class="badge"><i class="fa-solid fa-code" style="color: #3b82f6; margin-right: 5px;"></i> Clean Coder</span>
                 <span class="badge"><i class="fa-brands fa-laravel" style="color: #ef4444; margin-right: 5px;"></i> Laravel Artisan</span>

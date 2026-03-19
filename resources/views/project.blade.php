@@ -16,10 +16,15 @@
     </ul>
 </nav>
 
-<!-- HEADER PROJECT -->
 <section class="project-header reveal">
     <h1>{{ $project }}</h1>
-    <p>Kumpulan project yang pernah saya buat</p>
+    <p>
+        Halaman ini menampilkan berbagai project yang pernah saya kerjakan selama proses belajar 
+        dan pengembangan kemampuan di bidang web development. Setiap project merupakan hasil dari 
+        eksplorasi teknologi seperti Laravel, JavaScript, dan berbagai tools modern lainnya. 
+        Melalui project-project ini, saya mencoba menerapkan konsep pemrograman, desain antarmuka, 
+        serta solusi kreatif untuk menyelesaikan berbagai permasalahan yang ada dalam pengembangan aplikasi web.
+    </p>
 </section>
 
 <!-- PROJECT LIST -->
@@ -32,7 +37,7 @@
             <div class="project-card reveal">
 
                 <!-- GAMBAR PROJECT -->
-                <img src="{{ $projectItem->image ?? '/img/default.png' }}" alt="Project Image" class="project-img">
+                <img src="{{ $projectItem->image ?? '/image/iya.jpg' }}" alt="Project Image" class="project-img">
 
                 <!-- TEXT -->
                 <h3>{{ $projectItem->title }}</h3>

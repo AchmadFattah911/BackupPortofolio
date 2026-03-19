@@ -25,7 +25,7 @@ Route::post('/portofolio/send', [ContactController::class, 'send'])
 // ===============================
 // DASHBOARD + CRUD PROJECT
 // ===============================
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
 
     Route::get('/dashboard', [ProjectController::class, 'dashboard'])
         ->name('dashboard');
@@ -49,7 +49,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // ===============================
 // DASHBOARD + CRUD SKILLS
 // ===============================
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
 
     Route::get('/dashboard/skills', [SkillController::class, 'index'])
         ->name('skills.index');
@@ -73,7 +73,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // ===============================
 // DASHBOARD + CRUD CONTACTS (INBOX)
 // ===============================
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
     Route::get('/dashboard/contacts', [ContactController::class, 'index'])
         ->name('contacts.index');
 
@@ -84,7 +84,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // ===============================
 // DASHBOARD + CRUD SERVICES
 // ===============================
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
     Route::get('/dashboard/services', [\App\Http\Controllers\ServiceController::class, 'index'])->name('services.index');
     Route::get('/dashboard/services/create', [\App\Http\Controllers\ServiceController::class, 'create'])->name('services.create');
     Route::post('/dashboard/services', [\App\Http\Controllers\ServiceController::class, 'store'])->name('services.store');
