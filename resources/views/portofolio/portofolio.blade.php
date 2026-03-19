@@ -462,13 +462,13 @@
                 </a>
                 
                 <div class="social-floats mt-6" style="transform: translateZ(30px); display: flex; justify-content: center; gap: 15px; margin-top: 25px;">
-                    <a href="https://instagram.com/fattah" target="_blank" class="social-icon-float ig-float" data-tilt data-tilt-scale="1.2">
+                    <a href="https://www.instagram.com/ftahsfr4z/" target="_blank" class="social-icon-float ig-float" data-tilt data-tilt-scale="1.2">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a href="https://discord.com/users/fattah" target="_blank" class="social-icon-float dc-float" data-tilt data-tilt-scale="1.2">
+                    <a href="#" onclick="copyDiscord()" class="social-icon-float dc-float" data-tilt data-tilt-scale="1.2" title="Copy Discord: cukijosta">
                         <i class="fa-brands fa-discord"></i>
                     </a>
-                    <a href="https://github.com/fattah" target="_blank" class="social-icon-float gh-float" data-tilt data-tilt-scale="1.2">
+                    <a href="https://github.com/AchmadFattah911" target="_blank" class="social-icon-float gh-float" data-tilt data-tilt-scale="1.2">
                         <i class="fa-brands fa-github"></i>
                     </a>
                 </div>
@@ -1239,6 +1239,28 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(progressBar);
     }
 });
+function copyDiscord() {
+    navigator.clipboard.writeText("cukijosta");
+
+    const notif = document.createElement("div");
+    notif.innerText = "Discord 'cukijosta' berhasil disalin!";
+    notif.style.position = "fixed";
+    notif.style.bottom = "20px";
+    notif.style.right = "20px";
+    notif.style.background = "#5865F2";
+    notif.style.color = "white";
+    notif.style.padding = "10px 15px";
+    notif.style.borderRadius = "8px";
+    notif.style.boxShadow = "0 5px 15px rgba(0,0,0,0.3)";
+    notif.style.zIndex = "9999";
+    notif.style.fontSize = "14px";
+
+    document.body.appendChild(notif);
+
+    setTimeout(() => {
+        notif.remove();
+    }, 2000);
+}
 </script>
 
 <!-- TAMBAHKAN META TAG UNTUK OPTIMASI -->
