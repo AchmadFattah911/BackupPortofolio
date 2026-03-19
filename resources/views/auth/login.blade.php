@@ -89,6 +89,19 @@
             transform: translateY(-2px) scale(1.02);
             box-shadow: 0 10px 25px rgba(124, 58, 237, 0.5);
         }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 640px) {
+            .flip-container {
+                min-height: 680px;
+            }
+            .glass-panel {
+                padding: 2rem 1.5rem;
+            }
+            h2.text-3xl {
+                font-size: 1.75rem;
+            }
+        }
     </style>
 
     <div id="auth-wrapper" class="w-full sm:max-w-md mt-6 mb-6 px-4 perspective-1000 auth-entrance {{ request()->routeIs('register') ? 'is-flipped' : '' }}">

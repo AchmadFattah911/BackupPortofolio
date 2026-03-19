@@ -15,6 +15,15 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\SecurityHeadersMiddleware::class,
         ]);
 
+        $middleware->redirectGuestsTo('/login');
+        
+        $middleware->redirectUsersTo(function () {
+            if (\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->is_admin) {
+                return route('dashboard');
+            }
+            return '/';
+        });
+
         $middleware->alias([
             'is_admin' => \App\Http\Middleware\IsAdminMiddleware::class,
         ]);
