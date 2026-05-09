@@ -427,7 +427,7 @@
     <div class="contact-wrapper">
         <div class="contact-left reveal">
             <p style="color: var(--text-muted); margin-bottom: 25px; font-size: 1.1rem;">
-                Jika mengalami kendala atau ingin bekerja sama, silakan isi form di bawah ini <i class="fa-solid fa-hand-point-down" style="color: #eab308"></i>
+                Jika ingin bekerja sama, silakan isi form di bawah ini <i class="fa-solid fa-hand-point-down" style="color: #eab308"></i>
             </p>
             
             @if ($errors->any())
@@ -582,17 +582,7 @@ window.addEventListener('load', () => {
         document.body.appendChild(progressBar);
     }
     
-    // Confetti setelah cyberpunk loading screen hilang
-    setTimeout(() => {
-        if (typeof confetti === 'function') {
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#7c3aed', '#22d3ee', '#ffffff']
-            });
-        }
-    }, 3500);
+    // (Confetti effect removed by request)
 });
 
 /* =========================
