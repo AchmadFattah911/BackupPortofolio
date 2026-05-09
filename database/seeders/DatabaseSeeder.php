@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
+            'role' => 'admin',
         ]);
 
         // Data project

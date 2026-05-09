@@ -16,7 +16,7 @@
         <li><a href="#project">Project</a></li>
         <li><a href="#contact">Contact</a></li>
         @auth
-            @if(Auth::user()->is_admin)
+            @if(Auth::user()->role === 'admin')
                 <li><a href="{{ route('dashboard') }}" style="color: #22d3ee; font-weight: bold;">Dashboard</a></li>
             @else
                 <li>

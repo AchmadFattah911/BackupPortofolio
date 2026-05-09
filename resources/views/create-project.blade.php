@@ -88,6 +88,16 @@
                     </div>
 
                     <div>
+                        <label class="block text-sm font-bold text-cyan-400 mb-2 uppercase tracking-wide font-mono"><i class="fa-solid fa-link mr-2"></i>Project URL</label>
+                        <input
+                            type="text"
+                            name="url"
+                            placeholder="Enter project URL (optional)"
+                            class="cyber-input w-full px-4 py-3 bg-gray-900 text-cyan-300 placeholder-gray-600 focus:outline-none transition duration-300 font-mono text-sm"
+                        >
+                    </div>
+
+                    <div>
                         <label class="block text-sm font-bold text-pink-400 mb-2 uppercase tracking-wide font-mono"><i class="fa-solid fa-align-left mr-2"></i>Description Payload</label>
                         <textarea
                             name="description"

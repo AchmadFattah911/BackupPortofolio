@@ -31,7 +31,7 @@ class AuthController extends Controller
             // Simpan session
             $request->session()->put('logged_in', true);
             $request->session()->put('email', $user->email);
-            $request->session()->put('is_admin', $user->is_admin);
+            $request->session()->put('role', $user->role);
 
             return redirect('/')->with('success', 'Login berhasil!');
         }

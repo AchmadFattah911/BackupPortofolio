@@ -11,6 +11,7 @@ class Projects extends Model
     protected $fillable = [
         'title',
         'description',
+        'url',
     ];
 
     protected $primaryKey = 'id';

@@ -63,11 +63,13 @@ class ProjectController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'url' => 'nullable|string',
         ]);
 
         Projects::create([
             'title' => $request->title,
             'description' => $request->description,
+            'url' => $request->url,
         ]);
 
         return redirect()->route('dashboard')
@@ -92,6 +94,7 @@ class ProjectController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'url' => 'nullable|string',
         ]);
 
         $project = Projects::findOrFail($id);
@@ -99,6 +102,7 @@ class ProjectController extends Controller
         $project->update([
             'title' => $request->title,
             'description' => $request->description,
+            'url' => $request->url,
         ]);
 
         return redirect()->route('dashboard')

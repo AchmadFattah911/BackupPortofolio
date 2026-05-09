@@ -78,7 +78,7 @@
                 Saya memiliki ketertarikan mendalam dalam memecahkan masalah kompleks 
                 melalui proses optimasi *backend* dan menyusun *frontend* yang interaktif. 
                 Jika sedang mencari mitra untuk berkolaborasi atau membangun proyek digital, 
-                silakan hubungi saya melalui form di bawah ini!
+                silakan hubungi saya melalui form dibawah/ Tekan Contact pada Dynamic diatas:3
             </p>
         </div>
     </div>
@@ -406,7 +406,7 @@
                 <div class="project-card reveal" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000" data-tilt-glare="true" data-tilt-max-glare="0.5" style="transform-style: preserve-3d;">
                     <h3 class="project-title" style="transform: translateZ(40px);">{{ $project->title }}</h3>
                     <p class="project-desc" style="transform: translateZ(30px);">{{ $project->description }}</p>
-                    <a href="#" style="color: var(--accent-1); text-decoration: none; font-weight: 500; font-size: 0.95rem; margin-top: auto; display: inline-block; transform: translateZ(50px);">
+                    <a href="{{ $project->url ?? '#' }}" target="_blank" style="color: var(--accent-1); text-decoration: none; font-weight: 500; font-size: 0.95rem; margin-top: auto; display: inline-block; transform: translateZ(50px);">
                         View Project <i class="fa-solid fa-arrow-right" style="margin-left: 5px; font-size: 0.8rem;"></i>
                     </a>
                 </div>
@@ -577,22 +577,17 @@ window.addEventListener('load', () => {
         document.body.appendChild(progressBar);
     }
     
-    // Preloader fade out after 2 seconds
+    // Confetti setelah cyberpunk loading screen hilang
     setTimeout(() => {
-        const preloader = document.getElementById('preloader');
-        if (preloader) {
-            preloader.classList.add('fade-out');
-            // Confetti setelah preloader hilang
-            if (typeof confetti === 'function') {
-                confetti({
-                    particleCount: 150,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                    colors: ['#7c3aed', '#22d3ee', '#ffffff']
-                });
-            }
+        if (typeof confetti === 'function') {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#7c3aed', '#22d3ee', '#ffffff']
+            });
         }
-    }, 2000);
+    }, 3500);
 });
 
 /* =========================

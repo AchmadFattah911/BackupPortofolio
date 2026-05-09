@@ -20,7 +20,7 @@ class AdminSeeder extends Seeder
             [
                 'name' => 'Admin Portofolio',
                 'password' => Hash::make(env('ADMIN_PASSWORD', 'elliottakeit123@#$')),
-                'is_admin' => true,
+                'role' => 'admin',
             ]
         );
     }
