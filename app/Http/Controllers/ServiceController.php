@@ -26,7 +26,7 @@ class ServiceController extends Controller
             'description' => 'required',
         ]);
 
-        Service::create($request->all());
+        Service::create($request->only(['title', 'icon', 'description']));
 
         return redirect()->route('services.index')->with('success', 'Layanan berhasil dibuat!');
     }
@@ -44,7 +44,7 @@ class ServiceController extends Controller
             'description' => 'required',
         ]);
 
-        $service->update($request->all());
+        $service->update($request->only(['title', 'icon', 'description']));
 
         return redirect()->route('services.index')->with('success', 'Layanan berhasil diupdate!');
     }

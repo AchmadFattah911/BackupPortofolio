@@ -73,7 +73,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('projects.update', $project->id) }}" method="POST" class="space-y-8">
+                <form action="{{ route('projects.update', $project->id) }}" method="POST" enctype="multipart/form-data" class="space-y-8">
                     @csrf
                     @method('PUT') 
                     <div>
@@ -85,6 +85,21 @@
                             placeholder="Enter project designation"
                             class="cyber-input w-full px-4 py-3 bg-gray-900 text-pink-300 placeholder-gray-600 focus:outline-none transition duration-300 font-mono text-sm"
                             required
+                        >
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-pink-400 mb-2 uppercase tracking-wide font-mono"><i class="fa-solid fa-image mr-2"></i>Project Image (Optional)</label>
+                        @if($project->image)
+                            <div class="mb-4">
+                                <img src="{{ asset('storage/' . $project->image) }}" alt="Current Project Image" class="h-32 object-cover rounded-lg border border-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.3)]">
+                            </div>
+                        @endif
+                        <input
+                            type="file"
+                            name="image"
+                            accept="image/*"
+                            class="cyber-input w-full px-4 py-3 bg-gray-900 text-pink-300 placeholder-gray-600 focus:outline-none transition duration-300 font-mono text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-900 file:text-pink-300 hover:file:bg-pink-800"
                         >
                     </div>
 

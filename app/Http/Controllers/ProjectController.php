@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Projects;
 use App\Models\Skill;
-
-
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -64,11 +63,18 @@ class ProjectController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'url' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('projects', 'public');
+        }
 
         Projects::create([
             'title' => $request->title,
             'description' => $request->description,
+            'image' => $imagePath,
             'url' => $request->url,
         ]);
 
@@ -95,13 +101,24 @@ class ProjectController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'url' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $project = Projects::findOrFail($id);
 
+        $imagePath = $project->image;
+        if ($request->hasFile('image')) {
+            // Hapus gambar lama jika ada
+            if ($imagePath && Storage::disk('public')->exists($imagePath)) {
+                Storage::disk('public')->delete($imagePath);
+            }
+            $imagePath = $request->file('image')->store('projects', 'public');
+        }
+
         $project->update([
             'title' => $request->title,
             'description' => $request->description,
+            'image' => $imagePath,
             'url' => $request->url,
         ]);
 
@@ -115,6 +132,11 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         $project = Projects::findOrFail($id);
+
+        if ($project->image && Storage::disk('public')->exists($project->image)) {
+            Storage::disk('public')->delete($project->image);
+        }
+
         $project->delete();
 
         return redirect()->route('dashboard')

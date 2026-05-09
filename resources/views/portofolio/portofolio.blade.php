@@ -16,7 +16,7 @@
             website modern menggunakan HTML, CSS, dan Laravel. Saya memiliki passion dalam mendesain antarmuka yang clean dan responsif.
         </p>
 
-        <a href="/project" class="hero-btn">
+        <a href="#project" class="hero-btn">
             Lihat Project <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
         </a>
     </div>
@@ -404,6 +404,11 @@
         @else
             @foreach ($projects as $project)
                 <div class="project-card reveal" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000" data-tilt-glare="true" data-tilt-max-glare="0.5" style="transform-style: preserve-3d;">
+                    @if($project->image)
+                        <div style="width: 100%; height: 200px; overflow: hidden; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(34, 211, 238, 0.3); transform: translateZ(20px);">
+                            <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    @endif
                     <h3 class="project-title" style="transform: translateZ(40px);">{{ $project->title }}</h3>
                     <p class="project-desc" style="transform: translateZ(30px);">{{ $project->description }}</p>
                     <a href="{{ $project->url ?? '#' }}" target="_blank" style="color: var(--accent-1); text-decoration: none; font-weight: 500; font-size: 0.95rem; margin-top: auto; display: inline-block; transform: translateZ(50px);">

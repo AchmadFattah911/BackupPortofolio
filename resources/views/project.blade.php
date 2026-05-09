@@ -43,7 +43,7 @@
                 <h3>{{ $projectItem->title }}</h3>
                 <p>{{ $projectItem->description }}</p>
 
-                <a href="{{ $projectItem->link ?? '#' }}" class="btn">Lihat Project</a>
+                <a href="{{ $projectItem->url ?? '#' }}" class="btn" target="{{ isset($projectItem->url) ? '_blank' : '_self' }}">Lihat Project</a>
 
             </div>
         @endforeach

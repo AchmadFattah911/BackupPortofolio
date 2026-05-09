@@ -15,7 +15,7 @@ class ContactController extends Controller
             'deskripsi' => 'required|min:5',
         ]);
 
-        Contact::create($request->all());
+        Contact::create($request->only(['nama', 'email', 'deskripsi']));
 
         return back()->with('success', 'Pesan berhasil dikirim 🙌');
     }

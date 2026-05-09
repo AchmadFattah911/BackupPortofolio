@@ -85,6 +85,13 @@
                 
                 <ul class="space-y-3 font-mono">
                     <li>
+                        <a href="/" 
+                           class="cyber-nav-link block px-4 py-3 rounded-lg text-cyan-400 hover:text-pink-400 transition-all duration-300 font-bold tracking-wide uppercase text-sm flex items-center gap-3"
+                           style="border-bottom: 1px solid rgba(34, 211, 238, 0.2); margin-bottom: 15px;">
+                           <i class="fa-solid fa-arrow-left"></i> BACK TO LANDING
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('dashboard') }}" 
                            class="cyber-nav-link block px-4 py-3 rounded-lg text-gray-300 hover:text-cyan-400 transition-all duration-300 font-bold tracking-wide uppercase text-sm flex items-center gap-3">
                            <i class="fa-solid fa-folder-tree text-pink-500"></i> PROJECT DB

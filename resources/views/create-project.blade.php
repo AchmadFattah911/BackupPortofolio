@@ -73,7 +73,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('projects.store') }}" method="POST" class="space-y-8">
+                <form action="{{ route('projects.store') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
                     @csrf
 
                     <div>
@@ -84,6 +84,16 @@
                             placeholder="Enter project designation"
                             class="cyber-input w-full px-4 py-3 bg-gray-900 text-cyan-300 placeholder-gray-600 focus:outline-none transition duration-300 font-mono text-sm"
                             required
+                        >
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-cyan-400 mb-2 uppercase tracking-wide font-mono"><i class="fa-solid fa-image mr-2"></i>Project Image (Optional)</label>
+                        <input
+                            type="file"
+                            name="image"
+                            accept="image/*"
+                            class="cyber-input w-full px-4 py-3 bg-gray-900 text-cyan-300 placeholder-gray-600 focus:outline-none transition duration-300 font-mono text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-cyan-900 file:text-cyan-300 hover:file:bg-cyan-800"
                         >
                     </div>
 
